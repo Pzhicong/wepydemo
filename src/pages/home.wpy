@@ -108,16 +108,13 @@ body {
     border: 10px solid #f62828;
     clip: rect(0, 140rpx, 280rpx, 0);
 }
-
 .rightCircle {
     border: 20rpx solid #f62828;
     clip: rect(0, 280rpx, 280rpx, 140rpx);
 }
-
 .wth0 {
     width: 0;
 }
-
 .num {
     position: absolute;
     box-sizing: border-box;
@@ -1118,28 +1115,30 @@ height:190rpx;
     /**
      * 更新用户信息（头像，昵称）
      */
-    saveOrUpdateCustInfo(openId) {
+    async saveOrUpdateCustInfo(openId) {
       var that = this
-      console.log(that.userInfo)
-      common.post('/swisse-miniapp/miniapp/swrun/person/saveOrUpdateCustInfo', {
-        headerUrl: that.userInfo.avatarUrl,
-        nickName: that.userInfo.nickName,
-        city: that.userInfo.city,
-        tsno: new Date().getTime(),
-        openId: openId
-      }).then(res => {
-        if (res.data.code === '100') {
-          that.showPage = 2
-          that.teamId = res.data.teamId
-          that.getWeiXinSteps(openId)
-        } else {
-          wepy.showToast({
-            title: res.data.desc,
-            icon: 'loading',
-            duration: 2000
-          })
-        }
+      let response = await new Promise((resolve, reject) => {
+        common.post('/swisse-miniapp/miniapp/swrun/person/saveOrUpdateCustInfo', {
+          headerUrl: that.userInfo.avatarUrl,
+          nickName: that.userInfo.nickName,
+          city: that.userInfo.city,
+          tsno: new Date().getTime(),
+          openId: openId
+        }).then(res => {
+          resolve(res)
+        })
       })
+      if (response.data.code === '100') {
+        this.showPage = 2
+        this.teamId = response.data.teamId
+        this.getWeiXinSteps(openId)
+      } else {
+        wepy.showToast({
+          title: response.data.desc,
+          icon: 'loading',
+          duration: 2000
+        })
+      }
     }
 
     /**
@@ -1177,9 +1176,7 @@ height:190rpx;
         'platform': 7,
         'pointCode': '7020106'
       })
-      // var openId = wepy.getStorageSync('openId') || ''
       var msgFlag = event.currentTarget.dataset.flag
-      // console.log('switch发生 change 事件，携带值为', e.detail.value)
       common.post('/swisse-miniapp/miniapp/swrun/form/update/msg/flag', {
         openId: this.openId,
         msgFlag: msgFlag
@@ -1285,8 +1282,6 @@ height:190rpx;
 
     // 保存formId
     submitInfo(e) {
-      console.log(e.detail.formId)
-      // var openId = wepy.getStorageSync('openId') || ''
       common.post('/swisse-miniapp/miniapp/swrun/form/saveForm', {
         openId: this.openId,
         formId: e.detail.formId
