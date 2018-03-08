@@ -1,0 +1,1429 @@
+<style lang="less">
+.mianPage{}
+.topLogo{
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:20rpx;
+  padding:0rpx 40rpx;
+}
+.topLogo .rank{
+  -webkit-box-flex:1;
+  -moz-box-flex:1;
+  -webkit-flex:1;
+  -ms-flex:1;
+   flex:1;
+   text-align: left;
+}
+.topLogo .rank image{width:40rpx;height:40rpx;margin-left:15rpx;}
+.topLogo .rank view{color:gray;font-size:14px;}
+.topLogo .swisse{
+  -webkit-box-flex:2;
+  -moz-box-flex:2;
+  -webkit-flex:2;
+  -ms-flex:2;
+   flex:2;
+   text-align: center;
+}
+.topLogo .swisse image{
+  width:20vw;
+  height:7.48vw;
+}
+.topLogo .question{
+  -webkit-box-flex:1;
+  -moz-box-flex:1;
+  -webkit-flex:1;
+  -ms-flex:1;
+   flex:1;
+   text-align: right;
+}
+.topLogo .question image{width:40rpx;height:40rpx;margin-right:20rpx;}
+.topLogo .question view{color:gray;font-size:12px;}
+
+.wrap,
+.circle,
+.percent {
+    position: absolute;
+    width: 280rpx;
+    height: 280rpx;
+    border-radius: 50%;
+}
+
+.crileNumContainer{
+  position:absolute;
+  width:200rpx;
+  transform:translate(-50%,-50%);
+  top:50%;
+  left:50%;
+  text-align:center;
+  -webkit-transform:translate(-50%,-50%);
+  -moz-transform:translate(-50%,-50%);
+  font-weight:bold;
+}
+.crileNumContainer .ss{
+  font-size:16px;
+}
+.crileNumContainer .bs{
+  font-size:30px;
+}
+body {
+    background: gray;
+}
+.wrapContainer{
+  background:#f5f5f5;
+  position:relative;
+  height:140px;
+  margin:10rpx 0px;
+}
+.wrap {
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    left:50%;
+    background-color: white;
+}
+
+.circle {
+    box-sizing: border-box;
+    /* border:20px solid #ccc;   */
+    border: 20rpx solid white;
+    clip: rect(0, 280rpx, 280rpx, 140rpx);
+}
+
+.clip-auto {
+    clip: rect(auto, auto, auto, auto);
+}
+
+.percent {
+    box-sizing: border-box;
+    top: -20rpx;
+    left: -20rpx;
+}
+
+.leftCircle {
+    transition: transform ease;
+    border: 10px solid #f62828;
+    clip: rect(0, 140rpx, 280rpx, 0);
+}
+
+.rightCircle {
+    border: 20rpx solid #f62828;
+    clip: rect(0, 280rpx, 280rpx, 140rpx);
+}
+
+.wth0 {
+    width: 0;
+}
+
+.num {
+    position: absolute;
+    box-sizing: border-box;
+    width: 240rpx;
+    height: 240rpx;
+    line-height: 240rpx;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    left: 20rpx;
+    top: 20rpx;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    z-index: 1;
+}
+
+/* .wrap,
+.circle,
+.percent {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+body {
+    background: gray;
+}
+
+.wrap {
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    left:50%;
+    background-color: white;
+}
+
+.circle {
+    box-sizing: border-box;
+    border: 20px solid white;
+    clip: rect(0, 200px, 200px, 100px);
+}
+
+.clip-auto {
+    clip: rect(auto, auto, auto, auto);
+}
+
+.percent {
+    box-sizing: border-box;
+    top: -20px;
+    left: -20px;
+}
+
+.leftCircle {
+    transition: transform ease;
+    border: 20px solid red;
+    clip: rect(0, 100px, 200px, 0);
+}
+
+.rightCircle {
+    border: 20px solid red;
+    clip: rect(0, 200px, 200px, 100px);
+}
+
+.wth0 {
+    width: 0;
+}
+
+.num {
+    position: absolute;
+    box-sizing: border-box;
+    width: 160px;
+    height: 160px;
+    line-height: 160px;
+    text-align: center;
+    font-size: 40px;
+    left: 20px;
+    top: 20px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    z-index: 1;
+} */
+
+.foot{
+  padding:0rpx 40rpx;
+  position:fixed;
+  bottom:0rpx;
+  width:100vw;
+  box-sizing: border-box;
+  line-height: 1;
+  height:80rpx;
+  background:white;
+}
+.foot .bottomForm .myTeam{
+  width:35vw;
+  height:30px;
+  line-height: 30px;
+  text-align: center;
+  border:1px solid #000000;
+  border-radius: 15px;
+  font-size:14px;
+  color:#000000;
+  background: #ffffff;
+}
+.foot .bottomForm .myTeam::after,.foot .bottomForm .welfare::after{
+  display:none;
+}
+.foot .bottomForm .welfare{
+  width:35vw;
+  height:60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border:1px solid #000000;
+  border-radius: 15px;
+  position:absolute;
+  top:0px;
+  right:40rpx;
+  font-size:14px;
+  color:#000000;
+  background: #ffffff;
+}
+.foot .bottomForm .welfare::after,.foot .bottomForm .welfare::after{
+  display:none;
+}
+.remindContainer{
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  background:white;
+  /* padding: 30rpx 40rpx 40rpx; */
+  line-height:1;
+  padding:0 40rpx;
+  margin: 40rpx 0rpx 100rpx;
+}
+.remindContainer .left{font-size:12px;font-weight:bold;}
+.remindContainer .left image{
+  display:inline-block;
+  width:80rpx;
+  height:45rpx;
+  vertical-align: middle;
+  margin-right:10rpx;
+}
+.remindContainer .left switch{}
+.remindContainer .left label{vertical-align: middle;}
+
+.remindContainer .right{font-size:12px;}
+.remindContainer .right .finish{padding:5px;border-radius: 5px;background: red;width:0px;height:0px;margin:0 10px;display:inline-block;}
+.remindContainer .right .unfinish{padding:5px;border-radius: 5px;background: gray;margin:0 10px;width:0px;height:0px;display:inline-block;}
+
+/* .downloadMask{position:fixed;top:0;right:0;left:0;bottom:0;background: black;opacity: 0.7;} */
+.downloadMask .downloadBtn{
+  position:absolute;
+  bottom:-60px;
+  width:80vw;
+  left:2vw;
+  z-index:100;
+}
+.downloadMask .downloadBtn image{
+  width:80vw;
+  height:11.72vw;
+}
+
+.downloadContainer{position:fixed;top:15%;width:80vw;left:8vw;background: white;border-radius: 10px;padding:2vw;z-index:100;}
+.downloadContainer .close{position:absolute;top:-20px;right:-20px;width:30px;height:30px;}
+.downloadContainer .bg{width:80vw;height:48.81vw;}
+
+.secondPart{
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.secondPart .left{
+  -webkit-box-flex:1;
+  -moz-box-flex:1;
+  -webkit-flex:1;
+  -ms-flex:1;
+   flex:1;
+  text-align: center;
+  font-size:12px;
+  color:gray;
+}
+.secondPart .left image{
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+}
+.secondPart .left label{display:block;}
+.secondPart .middle{
+  -webkit-box-flex:3;
+  -moz-box-flex:3;
+  -webkit-flex:3;
+  -ms-flex:3;
+   flex:3;
+   font-size:10px;
+   padding-left:20rpx;
+}
+.secondPart .middle .one{
+  color:black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.secondPart .middle .two{
+  color:gray;
+  /* margin-bottom:10rpx; */
+}
+.secondPart .middle .two .red{
+  color:red;
+}
+.secondPart .middle .three{color:gray;}
+.secondPart .middle .three label{color:red;}
+.secondPart .middle .four{color:gray;}
+.secondPart .middle .four label{color:red;}
+.secondPart .right{
+  -webkit-box-flex:2;
+  -moz-box-flex:2;
+  -webkit-flex:2;
+  -ms-flex:2;
+   flex:2;
+   text-align: center;
+   line-height:1;
+}
+.secondPart .right image{
+  width:60px;
+  height:60px;
+}
+
+
+
+/* 日历模块 */
+
+.calendar{
+  /* padding:0rpx 40rpx; */
+}
+.calendar .p1{
+  text-align: center;
+  padding:20rpx 0px;
+  font-size:12px;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+}
+.calendar .p2{
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  -webkit-flex-wrap:wrap;
+  text-align:center;
+  font-size:14px;
+}
+.calendar .p2 view{
+  width:14.28%;
+}
+.calendar .p3 {
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  -webkit-flex-wrap:wrap;
+  text-align:center;
+}
+.calendar .p3 view{
+  /* margin-top:10rpx; */
+  width:14.28%;
+  justify-content: space-around;
+}
+/* 日历模块 */
+
+
+/* 打卡提示弹窗 */
+.f_tc{text-align: center;}
+.recordMask{}
+.recordContainer{position:fixed;top:15%;width:84vw;left:8vw;border-radius: 10px;z-index:100;}
+.recordContainer .topbg{
+width:100%;
+height:190rpx;
+}
+
+.recordContainer .textContainer{
+  padding:40rpx;
+  margin-top:-10rpx;
+  background: white;
+}
+.recordContainer .textContainer .recordBtn{
+  color:white;
+  font-weight:bold;
+  font-size:18px;
+  padding:5px 30px;
+  border-radius: 15px;
+  background: #d4553f;
+}
+.mg30{margin:30rpx;}
+.recordContainer .textContainer .tips{
+  color:gray;
+  text-align: center;
+  font-size:10px;
+}
+
+/* 打卡提示弹窗 */
+
+.bottomLine{
+  height:30px;
+}
+
+.mainPage .recordForm{}
+.mainPage .recordForm .recordBtn{
+  padding:0;
+  line-height:1;
+  /* text-decoration: underline;   */
+  border-bottom:1px solid #292929;
+  border-radius: 0;
+  background: #f5f5f5;
+  overflow: auto;
+  padding: 4rpx 0rpx;
+  font-size:12px;
+  letter-spacing: 2rpx;
+}
+.mainPage .recordForm .recordBtn::after,.mainPage .rankForm .rankBtn::after{
+  display:none;
+}
+.mainPage .rankForm .rankBtn{
+  padding:0;
+  line-height:1;
+  border-radius: 0;
+  background: #f5f5f5;
+  overflow: auto;
+  display:block;
+  color:gray;
+  font-size:12px;
+  text-align:left;
+}
+.p_fr{
+  float:right;
+}
+.redDay{
+  background: red;
+  color:white;
+}
+.grayDay{
+  background: #b7b7b7;
+  color:white;
+}
+
+.calendarDay{
+  /* padding:5px 9px;
+  border-radius:50%;
+  font-size:12px;
+  line-height:12px; */
+  display:inline-block;
+  width:45rpx;
+  height:45rpx;
+  line-height: 45rpx;
+  border-radius: 50%;
+  font-size:12px;
+}
+.authBtn {
+  margin-top: 20rpx;
+  width: 220rpx; 
+}
+
+.circleCanvas{
+  position: absolute;
+  left: 0;
+  right: 0; 
+  margin: 0 auto; 
+  z-index:1;
+}
+.d_none{display:none;}
+
+.kickMask__container{
+  position:absolute;
+  /* bottom:-60px; */
+  width:80vw;
+  left:10vw;
+  z-index:100;
+  background: white;
+  border-radius: 40rpx;
+  /* overflow: hidden; */
+  top:20%;
+  text-align: center;
+}
+.kickMask__container .close {position:absolute;top:-20rpx;right:-20rpx;width:30px;height:30px;}
+.kickMask .tipTop{
+  width:503rpx;
+  height:191rpx;
+}
+.kickMask .joinTeam__container {
+  width:503rpx;
+  height:433rpx;
+  transform:translateX(-50%);
+  left:50%;
+}
+.kickMask .tip{
+  font-size:13px;
+}
+.kickMask .one{
+  margin-top:65rpx;
+  color:gray;
+}
+.kickMask .two{
+  margin-top:10rpx;
+  font-weight: bold;
+}
+.kickMask .tip .teamName {
+  color:black;
+  font-weight: bold;
+  margin-top:10rpx;
+}
+</style>
+
+<template>
+  <view class="pageContainer">
+    <!-- 主页 -->
+<view class="mainPage">
+    <view style="background:#f5f5f5;padding-top:10rpx;">
+        <view class="topLogo">
+            <view class="rank" bindtap="goToPage" data-url="../rank/rank">
+                <image src="../../images/rank.png"></image>
+                <form bindsubmit="submitInfo" report-submit='true' class="rankForm">
+                    <button form-type="submit" type="default" size="mini" class="rankBtn">排行榜</button>
+                </form>
+            </view>
+            <view class="swisse">
+                <image src="../../images/swisse.png"></image>
+            </view>
+            <view class="question" bindtap="goToPage" data-url="../rule/rule?show=question">
+                <image src="../../images/question.png"></image>
+                <view>无步数?</view>
+            </view>
+        </view>
+        <view style="text-align:center;font-size:12px;" wx:if="{{stepNum<10000}}">当日目标1万步，未完成，加油！</view>
+        <view style="text-align:center;font-size:12px;" wx:if="{{stepNum>=10000}}">已超过1万步。太厉害了！</view>
+        <view class="wrapContainer" wx:if="{{hasUserInfo}}">
+            <view class="circle-box {{showCircleCanvas}}" >
+                <canvas class="circleCanvas" style="width:140px; height:140px;" canvas-id="canvasCircle">
+                </canvas>
+                <canvas class="circleCanvas" style="width:140px; height:140px;" canvas-id="canvasArcCir">
+                </canvas>
+            </view>
+            <!-- <view class="wrap">
+                <view class="circle {{circleClass}}">
+                    <view class="percent leftCircle" style="transform:{{rotateNun}};-webkit-transform:{{rotateNun}};"></view>
+                    <view class="percent rightCircle {{rightClass}}"></view>
+                </view>
+                <view class="num"></view>
+            </view> -->
+            <view class="crileNumContainer">
+                <view class="ss">今日步数</view>
+                <view class="bs">{{stepNum}}</view>
+            </view>
+        </view>
+        <view><button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="authBtn"> 获取数据 </button></view>
+        <view style="text-align:center;color:red;font-size:14px;" bindtap="showDownloadPic" wx:if="{{hasUserInfo}}"><label style="border-bottom:1px solid red;">为自己打Call</label></view>
+        <view style="padding:20rpx 40rpx;font-size:14px;font-weight:bold;">
+            <label style="font-size:12px;letter-spacing:2rpx;">本期总步数：{{allStep}}</label>
+            <form bindsubmit="submitInfo" report-submit='true' class="recordForm">
+                <button form-type="submit" type="default" size="mini" data-url="../mine/mine" bindtap="goToPage" class="recordBtn p_fr myRecordBtn">记录与荣耀</button>
+            </form>
+            <!-- <label style="float:right;text-decoration:underline;" bindtap="goToPage" data-url="../mine/mine">我的记录</label> -->
+        </view>
+    </view>
+
+    <view class="calendar">
+        <view class="p1">您有{{fullNum}}天步数超过1万</view>
+        <view class="p2">
+            <view>日</view>
+            <view>一</view>
+            <view>二</view>
+            <view>三</view>
+            <view>四</view>
+            <view>五</view>
+            <view>六</view>
+        </view>
+
+        <swiper style="height:{{swiperHeight}};"  current ='{{hasExMonth?1:0}}'>
+            <swiper-item wx:if="{{hasExMonth}}">
+                <!--上个月-->
+                <view class="p3">
+                    <view wx:for="{{exAllLenth}}" wx:key="{{index}}">
+                        <label class="calendarDay {{(index>=exMonthFirstDay && exMonthLen>=(index-exMonthFirstDay+1) && exMonthData[index-exMonthFirstDay] !==null)?(exMonthData[index-exMonthFirstDay]>=10000?'redDay':'grayDay'):''}}">
+                            {{index>=exMonthFirstDay?((index-exMonthFirstDay+1)>exMonthLen?'':(index-exMonthFirstDay+1)):''}}
+                        </label>
+                    </view>
+                </view>
+                <!--上个月-->
+            </swiper-item>
+
+            <swiper-item>
+                <!--当月-->
+                <view class="p3">
+                    <view wx:for="{{allLenth}}" wx:key="{{index}}">
+                        <label class="calendarDay {{(index>=monthFirstDay && monthLen>=(index-monthFirstDay+1) && thisMonthData[index-monthFirstDay] !==null)?(thisMonthData[index-monthFirstDay]>=10000?'redDay':'grayDay'):''}}">
+                            {{index>=monthFirstDay?((index-monthFirstDay+1)>monthLen?'':(index-monthFirstDay+1)):''}}
+                        </label>
+                    </view>
+                </view>
+                <!--当月-->
+            </swiper-item>
+        </swiper>
+    </view>
+
+    <view class="remindContainer">
+        <view class="left">
+            <!-- <switch bindchange="switchChange" checked="{{checked}}" size="small"/> -->
+            <image src="../../images/check.png"  wx:if="{{checked}}" bindtap="switchChange" data-flag="0"></image>
+            <image src="../../images/uncheck.png" wx:if="{{!checked}}" bindtap="switchChange" data-flag="1"></image>
+            <label>提醒我坚持</label>
+        </view>
+        <view class="right">
+            <view class="finish"></view>
+            <label>已完成</label>
+            <view class="unfinish"></view>
+            <label>未完成</label>
+        </view>
+    </view>
+
+    <view class="foot">
+        <form bindsubmit="submitInfo" report-submit='true' class="bottomForm">
+            <button form-type="submit" type="default" size="mini" class="myTeam" bindtap="goToPage" data-url="../team/team">我的跑团</button>
+            <button form-type="submit" type="default" size="mini" class="welfare" bindtap="goToPage" data-url="../award/award">能量加油站</button>
+        </form>
+        <!-- <view class="myTeam" bindtap="goToPage" data-url="../team/team">
+            我的跑团
+        </view>
+        <view class="welfare" bindtap="goToPage" data-url="../award/award">
+            能量加油站
+        </view> -->
+    </view>
+    <!-- <view class="bottomLine"></view> -->
+</view>
+<!-- 主页 -->
+
+<!-- 弹窗遮罩层 -->
+<view class="downloadMask" style="display:{{maskAppear}};">
+    <view class="downloadContainer">
+        <view style="text-align:center;">
+            <image src="../../images/swisse.png" style="width:20vw;height:7.48vw;margin-top:10rpx;"></image>
+            <view style="font-size:12px;">庆祝生活每一天</view>
+            <view style="font-size:12px;margin-bottom:20rpx;">Live Healthy , Be Happy</view>
+        </view>
+        <image src="../../images/close.png" class="close" bindtap="closeMask"></image>
+        <image src="{{shareImage}}" class="bg"></image>
+        <view class="secondPart">
+            <view class="left">
+                <image src="{{userInfo.avatarUrl}}"></image>
+                <label>{{userInfo.nickName}}</label>
+            </view>
+            <view class="middle">
+                <!-- <view class="one">正在参加Swisse21天打卡计划</view> -->
+                <view class="three" style="margin-bottom:10rpx;">今天步数<label>{{stepNum}}</label>步</view>
+                <view class="three">您有
+                    <label>{{fullNum}}</label>天步数超过1万，总步数:</view>
+                <view class="four">
+                    <label>{{allStep}}</label>步</view>
+                <view class="two">累计全国排名第<label class="red">{{personRank}}</label>名<label wx:if="{{userInfo.city}}">，{{userInfo.city}}第<label class="red">{{cityTotalOrder}}</label>名</label></view>
+            </view>
+            <view class="right">
+                <image src="https://img2.mama100.com/site/mobile/img/swisse-wxapp/21Days/images/appCode.jpg"></image>
+                <view style="color:gray;font-size:10px;">长按识别小程序码</view>
+                <view style="color:gray;font-size:10px;">一起来参加</view>
+            </view>
+        </view>
+        <view class="downloadBtn">
+                <image src="../../images/save.png" bindtap="saveCanvasToMobile"></image>
+        </view>
+    </view>
+    <view class="mask_opacity"></view>
+</view>
+<!-- 弹窗遮罩层 -->
+
+<!-- 打卡遮罩层 -->
+<view class="recordMask"  style="display:none;">
+    <view class="recordContainer">
+        <image src="../../images/top.png" class="topbg"></image>
+        <view class="textContainer">
+            <view class="f_tc mg30">
+                <text class="recordBtn">点击打卡</text>
+            </view>
+            <view class="tips">打卡时间：每天21:00~22:00</view>
+        </view>
+    </view>
+    <view class="mask_opacity"></view>
+</view>
+<!-- 打卡遮罩层 -->
+
+<!-- 每日团队第一名 -->
+<view class="kickMask" wx:if="{{showFirstRankDialog}}">
+    <view class="kickMask__container joinTeam__container">
+        <image src="../../images/close.png" class="close" bindtap="closeFirstRankDialog"></image>
+        <image src="../../images/tipTop.png" class="tipTop"></image>
+        <view class="tip one">
+            <view class="teamName">{{rankOneTip[0]}}</view>
+            <view class="teamName">{{rankOneTip[1]}}</view>
+        </view>
+    </view>
+    <view class="mask_opacity"></view>
+</view>
+<!-- 每日团队第一名 -->
+
+<!-- canvas -->
+ <canvas canvas-id="myCanvas" id="myCanvas" style="width:350px;height:440px;border:1px solid gray;margin-top:200px;display:{{canvasAppear}};"></canvas> 
+<!-- canvas -->
+
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import List from '../components/list'
+  import Panel from '@/components/panel' // alias example
+  import Counter from 'counter' // alias example
+  import Group from '../components/group'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+  import common from '../libs/util'
+  import logstat from '../libs/logstat'
+
+  export default class Home extends wepy.page {
+    config = {
+      navigationBarTitleText: 'home'
+    }
+    components = {
+      panel: Panel,
+      counter1: Counter,
+      counter2: Counter,
+      list: List,
+      group: Group,
+      toast: Toast
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      images: '',
+      stepNum: '', // 今天步数
+      allStep: '', // 本期总步数
+      fullNum: 0, // 坚持1万步天数
+      checked: true, // 是否提示
+      firstTransform: 'rotate(0deg)',
+      secondTransform: 'rotate(0deg)',
+      borderColor: 'white white white transparent',
+      userInfo: {},
+      canvasAppear: 'none',
+      maskAppear: 'none',
+      circleClass: '',
+      rightClass: 'wth0',
+      rotateNun: '',
+      monthFirstDay: '',
+      exMonthFirstDay: '',
+      monthLen: '',
+      exMonthLen: '',
+      allLenth: 0,
+      exAllLenth: 0,
+      thisMonthData: [],
+      exMonthData: [],
+      from: '',
+      hasExMonth: false,
+      nowDate: '',
+      swiperHeight: '218rpx',
+      shareImage: '',
+      hasUserInfo: false,
+      personRank: 0, // 全国排名
+      cityTotalOrder: 0, // 市排名
+      canIUse: wepy.canIUse('button.open-type.getUserInfo'),
+      showCircleCanvas: '',
+      showFirstRankDialog: false, // 显示每日团队第一名提示
+      rankOneTip: [],
+      ctx: wepy.createCanvasContext('canvasArcCir')
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+
+    events = {
+      'index-emit': (...args) => {
+        let $event = args[args.length - 1]
+        console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
+      }
+    }
+
+    onLoad(options) {
+      let cxtArc = wepy.createCanvasContext('canvasCircle')
+      cxtArc.setLineWidth(10)
+      cxtArc.setStrokeStyle('white')
+      cxtArc.setLineCap('round')
+      cxtArc.beginPath()
+      cxtArc.arc(70, 70, 60, 0, 2 * Math.PI, false)
+      cxtArc.stroke()
+      cxtArc.draw()
+      logstat.logPv({
+        'platform': 7,
+        'pointCode': '7010100'
+      })
+      if (options && options.record) {
+        this.from = 'message'
+      }
+
+      let picNumber = Math.round(Math.random() * 23) + 1
+      let shareImage = common.remoteImageUrl + 'pictrue/share' + picNumber + '.jpg'
+      this.shareImage = shareImage
+    }
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    async onShow(options) {
+      this.openId = await this.$parent.getOpenId()
+      this.userInfo = await this.$parent.getUserInfo()
+      this.hasUserInfo = true
+      common.get('/swisse-miniapp/miniapp/common/query/cur/sys/time').then(res => {
+        if (res.data.code === '100') {
+          let nowDate = res.data.data.split(' ')[0]
+          this.nowDate = nowDate
+          this.saveOrUpdateCustInfo(this.openId)
+        } else {
+          common.showErrorTip('查询系统时间出错')
+        }
+      })
+      this.getRemindState(this.openId)
+      this.checkShowRankOne(this.openId)
+    }
+
+    getUserInfo(e) {
+      console.log(e)
+      this.$parent.globalData.userInfo = e.detail.userInfo
+      wepy.setStorageSync('userInfo', e.detail.userInfo)  // 保存用户数据到storage
+      this.userInfo = e.detail.userInfo
+      this.hasUserInfo = true
+      this.onShow()
+    }
+
+    /**
+     * 获取提示状态
+     */
+    getRemindState(openId) {
+      common.get('/swisse-miniapp/miniapp/swrun/get/send/msg/flag/' + openId).then(res => {
+        if (res.data.code === '100') {
+          this.checked = res.data.data === '1'
+        }
+      })
+    }
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage() {
+      logstat.logPv({
+        'platform': 7,
+        'pointCode': '7020107'
+      })
+      return {
+        title: '21天打卡计划',
+        path: '/pages/home/home',
+        imageUrl: '/images/shareLogo.jpg',
+        success: function(res) {
+        },
+        fail: function(res) {
+        }
+      }
+    }
+
+    /**
+     * 打开弹窗
+     */
+    showDownloadPic() {
+      logstat.logPv({
+        'platform': 7,
+        'pointCode': '7020103'
+      })
+      var openId = this.openId
+      if (!openId) {
+        common.showErrorTip('openId有误')
+        return
+      }
+      common.showLoading('')
+      common.get('/swisse-miniapp/miniapp/swrun/person/query/my/total/step/info/' + openId).then(res => {
+        if (res.data.code === '100') {
+          this.maskAppear = 'block'
+          this.showCircleCanvas = 'd_none'
+          this.personRank = res.data.data.nationTotalOrder
+          this.cityTotalOrder = res.data.data.cityTotalOrder
+        } else {
+          common.showLoading('查询排名失败')
+        }
+      }).catch(err => {
+        console.log(err)
+        common.showLoading('查询排名失败')
+      })
+    }
+
+    /**
+     * 关闭弹窗
+     */
+    closeMask() {
+      this.maskAppear = 'none'
+      this.showCircleCanvas = ''
+    }
+
+    /**
+     * 使用canvas绘画并把canvas保存图片到手机相册
+     */
+    saveCanvasToMobile(event) {
+      var that = this
+      var shareUrl = this.shareImage
+      var codeUrl = common.remoteImageUrl + 'appCode.jpg'
+      var logoUrl = common.remoteImageUrl + 'swisse.png'
+      this.canvasAppear = 'block'
+      const ctx = wepy.createCanvasContext('myCanvas')
+      var userInfo = wepy.getStorageSync('userInfo') || ''
+      var stepNum = this.stepNum ? this.stepNum.toString() : '0'
+      var allStep = this.allStep ? this.allStep.toString() : '0'
+      var personRank = this.personRank ? this.personRank.toString() : '0'
+      var cityTotalOrder = this.cityTotalOrder ? this.cityTotalOrder.toString() : '0'
+      var city = userInfo.city
+      var nickName = userInfo.nickName
+      if (nickName.length > 5) {
+        nickName = nickName.substring(0, 5)
+      }
+      common.showLoading('')
+      wepy.downloadFile({
+        url: logoUrl,
+        success: function(logoRes) {
+          wepy.downloadFile({
+            url: userInfo.avatarUrl,
+            success: function(headRes) {
+              wepy.downloadFile({
+                url: shareUrl,
+                success: function(shareRes) {
+                  wepy.downloadFile({
+                    url: codeUrl,
+                    success: function(codeRes) {
+                      ctx.setFillStyle('white')
+                      ctx.fillRect(0, 0, 350, 440)
+                      ctx.drawImage(logoRes.tempFilePath, 137.5, 20, 75, 28)
+                      ctx.setTextAlign('center')
+                      ctx.setFillStyle('black')
+                      ctx.setFontSize(14)
+                      ctx.fillText('庆祝生活每一天', 175, 65)
+                      ctx.fillText('Live Healthy , Be Happy', 175, 85)
+                      ctx.setTextAlign('left')
+                      ctx.save()
+                      ctx.beginPath()
+                      ctx.arc(35, 347, 25, 0, 2 * Math.PI)
+                      ctx.clip()
+                      ctx.drawImage(headRes.tempFilePath, 10, 322, 50, 50)
+                      ctx.restore()
+                      ctx.drawImage(shareRes.tempFilePath, 10, 100, 330, 202)
+                      ctx.setFontSize(12)
+                      ctx.setFillStyle('gray')
+                      ctx.setTextAlign('center')
+                      ctx.fillText(nickName, 35, 392)
+                      ctx.setTextAlign('left')
+                      // 字12.5,数字8
+                      ctx.setFillStyle('gray')
+                      ctx.fillText('今天步数', 70, 338)
+                      ctx.setFillStyle('red')
+                      ctx.fillText(that.data.stepNum, 120, 338)
+                      ctx.setFillStyle('gray')
+                      ctx.fillText('步', 120 + stepNum.length * 8, 338)
+                      ctx.setFillStyle('gray')
+                      ctx.fillText('您有', 70, 362)
+                      ctx.setFillStyle('red')
+                      ctx.fillText(that.data.fullNum, 100, 362)
+                      ctx.setFillStyle('gray')
+                      ctx.fillText('天步数超过1万步，总步数', 115, 362)
+                      ctx.setFillStyle('red')
+                      ctx.fillText(that.data.allStep, 70, 377)
+                      ctx.setFillStyle('gray')
+                      ctx.fillText('步', 70 + allStep.length * 8, 377)
+
+                      ctx.fillText('累计全国排名第', 70, 392)
+                      ctx.setFillStyle('red')
+                      ctx.fillText(personRank, 145 + 12.5, 392)
+                      ctx.setFillStyle('gray')
+                      ctx.fillText('名', 145 + 12.5 + personRank.length * 8, 392)
+                      if (city) {
+                        ctx.fillText('，' + city + '第', 145 + 12.5 * 2 + personRank.length * 8, 392)
+                        ctx.setFillStyle('red')
+                        ctx.fillText(cityTotalOrder, 145 + personRank.length * 8 + (city.length + 4) * 12.5, 392)
+                        ctx.setFillStyle('gray')
+                        ctx.fillText('名', 145 + personRank.length * 8 + (city.length + 4) * 12.5 + cityTotalOrder.length * 8, 392)
+                      }
+                      ctx.drawImage(codeRes.tempFilePath, 270, 322, 60, 60)
+                      ctx.fillText('长按识别小程序码', 250, 400)
+                      ctx.fillText('一起来参加', 265, 420)
+                      ctx.save()
+                      ctx.draw(true)
+                      setTimeout(function() {
+                        wepy.canvasToTempFilePath({
+                          canvasId: 'myCanvas',
+                          success: function(res) {
+                            wepy.saveImageToPhotosAlbum({
+                              filePath: res.tempFilePath,
+                              success: function (res1) {
+                                console.log(JSON.stringify(res1))
+                                that.canvasAppear = 'none'
+                                that.maskAppear = 'none'
+                                that.showCircleCanvas = ''
+                                common.toastMessage('保存成功')
+                              },
+                              fail: function () {
+                                that.canvasAppear = 'none'
+                                common.showLoading('保存到相册失败')
+                              },
+                              complete: function () {
+                              }
+                            })
+                          },
+                          fail: function(res) {
+                            common.showLoading('保存失败')
+                            that.canvasAppear = 'none'
+                          }
+                        })
+                      }, 500)
+                    },
+                    fail: function(err) {
+                      console.log(err)
+                      that.canvasAppear = 'none'
+                      common.showErrorTip('下载二维码图片失败')
+                    }
+                  })
+                },
+                fail: function(err) {
+                  console.log(err)
+                  that.canvasAppear = 'none'
+                  common.showErrorTip('下载分享图片失败')
+                }
+              })
+            },
+            fail: function(err) {
+              console.log(err)
+              that.canvasAppear = 'none'
+              common.showErrorTip('下载头像图片失败')
+            }
+          })
+        },
+        fail: function() {
+          that.canvasAppear = 'none'
+          common.showErrorTip('下载logo图片失败')
+        }
+      })
+    }
+
+    /**
+     * 下载图片到手机
+     */
+    downloadPic(event) {
+      var that = this
+      var mUrl = ''
+      if (event.currentTarget.dataset.url != null) {
+        mUrl = event.currentTarget.dataset.url
+      }
+      wepy.downloadFile({
+        url: mUrl,
+        type: 'image',
+        success: function (res) {
+          console.log(res)
+          wepy.saveImageToPhotosAlbum({
+            // filePath: '../../images/goods.jpg',
+            filePath: res.tempFilePath,
+            success: function (res1) {
+              console.log(JSON.stringify(res1))
+              that.canvasAppear = 'none'
+            },
+            fail: function () {
+            },
+            complete: function () {
+            }
+          })
+        },
+        fail: function (res) {
+          console.log('download fail')
+        },
+        complete: function (res) {
+          console.log('download complete')
+        }
+      })
+    }
+
+    /**
+     * 获取个人步数数据
+     */
+    async getWeiXinSteps(openId) {
+      var that = this
+      var lastStep = wepy.getStorageSync('lastStep') || '-1'
+      let sessionId = this.$parent.getOpenId(true)
+      // var sessionId = wepy.getStorageSync('sessionId') || ''
+      // if (!sessionId) {
+      //   setTimeout(function() {
+      //     that.getWeiXinSteps(openId)
+      //   }, 500)
+      //   return
+      // }
+      if (!wepy.getWeRunData) {
+        common.showLoading('版本不支持')
+        setTimeout(() => {
+          wepy.navigateTo({url: '../rule/rule?show=question'})
+        }, 2000)
+        return
+      }
+      wepy.getWeRunData({
+        success(res) {
+          const encryptedData = res.encryptedData
+          common.showLoading('')
+          common.post('/swisse-miniapp/miniapp/swrun/person/update/run/step', {
+            encryptedData: encryptedData,
+            iv: res.iv,
+            openId: openId,
+            sessionId: sessionId,
+            rawData: '',
+            signature: '',
+            lastStep: lastStep
+          }).then(res => {
+            if (res.data.code === '100') {
+              var title = ''
+              if (that.data.from === 'message') {
+                title = '已打卡，步数更新成功！'
+              } else {
+                title = '步数更新成功！'
+              }
+              wepy.showToast({
+                title: title,
+                icon: 'success',
+                duration: 2000
+              })
+              that.queryMyStepInfo(openId)
+            } else if (res.data.code === '6000') {
+              // session过期
+              common.updateSession(that.getWeiXinSteps)
+            } else if (res.data.code === '-1') {
+              wepy.showModal({
+                title: '提示',
+                content: '亲，您今天的步数有异常噢！\r\n可联系：4008832490',
+                showCancel: false,
+                confirmText: '知道了',
+                success: function(res) {
+                  // if (res.confirm) {
+                  //   wx.makePhoneCall({
+                  //     phoneNumber: '4008832490'
+                  //   });
+                  // } else if (res.cancel) {
+                  // }
+                }
+              })
+              that.queryMyStepInfo(openId)
+            } else if (res.data.code === '-2') {
+              that.queryMyStepInfo(openId)
+            } else {
+              // 解密失败
+              wepy.showToast({
+                title: '步数更新失败',
+                icon: 'loading',
+                duration: 2000
+              })
+              that.queryMyStepInfo(openId)
+              // common.updateSession(that.getWeiXinSteps);
+            }
+          })
+        },
+        fail: function() {
+          common.showLoading('版本太低咯')
+        }
+      })
+    }
+
+    /**
+     * 更新用户信息（头像，昵称）
+     */
+    saveOrUpdateCustInfo(openId) {
+      var that = this
+      console.log(that.userInfo)
+      common.post('/swisse-miniapp/miniapp/swrun/person/saveOrUpdateCustInfo', {
+        headerUrl: that.userInfo.avatarUrl,
+        nickName: that.userInfo.nickName,
+        city: that.userInfo.city,
+        tsno: new Date().getTime(),
+        openId: openId
+      }).then(res => {
+        if (res.data.code === '100') {
+          that.showPage = 2
+          that.teamId = res.data.teamId
+          that.getWeiXinSteps(openId)
+        } else {
+          wepy.showToast({
+            title: res.data.desc,
+            icon: 'loading',
+            duration: 2000
+          })
+        }
+      })
+    }
+
+    /**
+     * 查询用户个人本期总步数、昨日步数、历史步数列表
+     */
+    queryMyStepInfo(openId) {
+      var that = this
+      common.get('/swisse-miniapp/miniapp/swrun/person/query/run/info/' + openId).then(res => {
+        if (res.data.code === '100') {
+          var percent = (parseInt(res.data.data.curStep) / 10000).toFixed(2) * 100
+          percent = percent > 100 ? 100 : percent
+          wepy.setStorageSync('lastStep', res.data.data.curStep)
+          that.stepNum = res.data.data.curStep
+          that.allStep = res.data.data.curTimesTotalStep
+          that.$apply()
+          if (percent !== 0) {
+            that.drawCircle(percent)
+          }
+          // that.saveCanvasToMobile();
+          that.formData(res.data.data.dateStepBeanList)
+        } else {
+          common.showErrorTip(res.data.desc)
+        }
+      })
+    }
+
+    /**
+     * TODO
+     * 提醒坚持开关
+     */
+    switchChange(event) {
+      var that = this
+      common.showLoading('')
+      logstat.logPv({
+        'platform': 7,
+        'pointCode': '7020106'
+      })
+      var openId = wepy.getStorageSync('openId') || ''
+      var msgFlag = event.currentTarget.dataset.flag
+      // console.log('switch发生 change 事件，携带值为', e.detail.value)
+      common.post('/swisse-miniapp/miniapp/swrun/form/update/msg/flag', {
+        openId: openId,
+        msgFlag: msgFlag
+      }).then(res => {
+        if (res.data.code === '100') {
+          common.toastMessage('设置成功')
+          that.checked = msgFlag === 1
+        } else {
+          common.showLoading('设置失败')
+        }
+      })
+    }
+
+    /**
+     * 数据格式化
+     */
+    formData(arr) {
+      let thisMonthData = []
+      let exMonthData = []
+      let hasExMonthData = false
+      let thisMoth = ''
+      thisMoth = parseInt(this.nowDate.split('-')[1])
+      var monthLen = common.getDaysInMonth(this.nowDate)
+      var monthFirstDay = common.getwekInMonth(this.nowDate)
+      var allLenth = this.getAllLength(monthFirstDay, monthLen)
+      let exAllLenth = 0
+      let fullNum = 0
+      this.monthLen = monthLen
+      this.monthFirstDay = monthFirstDay
+
+      for (var z = 0; z < this.monthLen; z++) {
+        thisMonthData.push(null)
+      }
+      for (var i = 0; i < arr.length; i++) {
+        var month = parseInt(arr[i].runDate.split('-')[1])
+        var day = parseInt(arr[i].runDate.split('-')[2])
+        if (month === thisMoth) {
+          thisMonthData[day - 1] = parseInt(arr[i].step)
+          if (parseInt(arr[i].step) > 10000) {
+            fullNum += 1
+          }
+        } else {
+          if (!hasExMonthData) {
+            var exMonthFirstDay = common.getwekInMonth(arr[i].runDate)
+            var exMonthLen = common.getDaysInMonth(arr[i].runDate)
+            exAllLenth = this.getAllLength(exMonthFirstDay, exMonthLen)
+            for (var j = 0; j < exMonthLen; j++) {
+              exMonthData.push(null)
+            }
+            this.exMonthLen = exMonthLen
+            this.exMonthFirstDay = exMonthFirstDay
+          }
+          hasExMonthData = true
+          exMonthData[day - 1] = parseInt(arr[i].step)
+          if (parseInt(arr[i].step) > 10000) {
+            fullNum += 1
+          }
+        }
+      }
+      if (hasExMonthData) {
+        this.thisMonthData = thisMonthData
+        this.exMonthData = exMonthData
+        this.hasExMonth = true
+        this.allLenth = allLenth
+        this.exAllLenth = exAllLenth
+        this.fullNum = fullNum
+      } else {
+        this.thisMonthData = thisMonthData
+        this.hasExMonth = false
+        this.allLenth = allLenth
+        this.exAllLenth = exAllLenth
+        this.fullNum = fullNum
+      }
+      var maxLength = 0
+      var swiperHeight = '218rpx'
+      if (this.allLenth > this.exAllLenth) {
+        maxLength = this.allLenth
+      } else {
+        maxLength = this.exAllLenth
+      }
+      if (maxLength > 35) {
+        swiperHeight = '334rpx'
+      } else if (maxLength > 28) {
+        swiperHeight = '276rpx'
+      }
+      this.swiperHeight = swiperHeight
+      this.$apply()
+    }
+
+    getAllLength(monthFirstDay, monthLen) {
+      var allLenth = 0
+      var length = monthFirstDay + monthLen
+      var weeks = parseInt(length / 7)
+      var yushu = length % 7
+      if (yushu > 0) {
+        allLenth = 7 * (weeks + 1)
+      } else {
+        allLenth = length
+      }
+      return allLenth
+    }
+
+    // 保存formId
+    submitInfo(e) {
+      console.log(e.detail.formId)
+      var openId = wepy.getStorageSync('openId') || ''
+      common.post('/swisse-miniapp/miniapp/swrun/form/saveForm', {
+        openId: openId,
+        formId: e.detail.formId
+      }).then(res => {
+        if (res.data.code === '100') {
+          console.log('保存formId成功')
+        } else {
+          console.log('保存formId失败')
+        }
+      })
+    }
+
+    drawCircle(percent) {
+      let ctx = this.ctx
+      function drawArc(s, e) {
+        ctx.setFillStyle('white')
+        ctx.clearRect(0, 0, 200, 200)
+        ctx.draw()
+        let x = 70
+        let y = 70
+        let radius = 60
+        ctx.setLineWidth(10)
+        ctx.setStrokeStyle('#f62828')
+        ctx.setLineCap('round')
+        ctx.beginPath()
+        ctx.arc(x, y, radius, s, e, false)
+        ctx.stroke()
+        ctx.draw()
+      }
+      let startAngle = -0.5 * Math.PI
+      let endAngle = 0
+      // var percent = 50;
+      endAngle = 2 * Math.PI * percent / 100 - 0.5 * Math.PI
+      drawArc(startAngle, endAngle)
+    }
+
+    closeFirstRankDialog() {
+      this.showFirstRankDialog = false
+      this.showCircleCanvas = ''
+    }
+
+    checkShowRankOne(openId) {
+      var that = this
+      common.get('/swisse-miniapp/miniapp/swrun/team/query/day/top1/msg/' + openId).then(res => {
+        if (res.data.code === '100') {
+          if (res.data.data) {
+            var rankOneTip = res.data.data.split('，')
+            that.showFirstRankDialog = true
+            that.rankOneTip = rankOneTip
+            that.showCircleCanvas = 'd_none'
+          }
+        } else {
+          common.showErrorTip(res.data.desc)
+        }
+      })
+    }
+  }
+</script>

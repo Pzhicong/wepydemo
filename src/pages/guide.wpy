@@ -1,0 +1,450 @@
+<style lang="less">
+  .firstPage{ text-align: center;position:relative;height:100vh;overflow: hidden;}
+.firstPage .fullImages{width:100vw;height:100vh;}
+/* 52/139 */
+.firstPage .swisse{top:20px;left:20px;width:20vw;height:7.48vw;position:absolute;}
+.firstPage .ruleBtn{top:25px;right:20px;color:white;text-decoration: underline;position:absolute;font-size: 14px;}
+/* 403/661 */
+.firstPage .bg1{position:absolute;top:10%;right:10vw;width:80vw;height:48.77vw;}
+/* 358/661 */
+.firstPage .bg2{position:absolute;top:45%;right:10vw;width:80vw;height:43.33vw;}
+.firstPage .number{position:absolute;top:80%;color:white;font-size:14px;width:100vw;}
+/* 80/300 */
+.firstPage .runBtn{position:absolute;top:85%;width:40vw;left:30vw;height:10.67vw;}
+.firstPage .startForm{
+    position: absolute;top: 85%;text-align: center;width: 100%;left: 0;
+}
+
+.firstPage .startForm .startBtn{
+    background-color: #e72c34;
+    padding:5rpx  80rpx;
+    font-size:18px;
+    color:white;
+    font-weight: bold;
+    letter-spacing: 5rpx;
+}
+
+.p_none{
+    display:none;
+}
+.f_tc{
+    text-align: center;
+}
+ .f_f10{
+     font-size: 10px;
+ } 
+ .f_cgray{
+     color:gray;
+ }
+ .p_rel{
+     position: relative;
+ }
+ .mt40{
+     margin-top:40rpx;
+ }
+
+.guideMask{}
+.guideContainer,.awardContainer{position:fixed;top:15%;width:84vw;left:8vw;border-radius: 10px;z-index:100;}
+.guideContainer .close,.awardContainer .close{position:absolute;top:-20px;right:-20px;width:30px;height:30px;}
+.guideContainer .topbg,.awardContainer .topbg{
+width:100%;
+height:190rpx;
+}
+
+.textContainer{
+    padding:20rpx 40rpx;
+    background:white;
+    font-size:12px;
+    color:gray;
+    margin-top:-10rpx;
+}
+.textContainer .rule{color:#292929;font-weight:bold;font-size:14px;margin-bottom:10rpx;}
+.textContainer .p{margin-bottom:40rpx;}
+
+.guideContainer .footButton{
+    height:55rpx;
+    margin-bottom:45rpx;
+}
+.guideContainer .footButton .left{
+    width:250rpx;
+    height:65rpx;
+    line-height: 65rpx;
+    float:left;
+    text-align: center;
+    color:white;
+    font-weight:bold;
+    border-radius: 5px;
+    background:#da4f45;
+}
+.guideContainer .footButton .right{
+    width:250rpx;
+    height:65rpx;
+    line-height: 65rpx;
+    float:right;
+    text-align: center;
+    color:white;
+    font-weight:bold;
+    border-radius: 5px;
+    background:#d12e23;
+    margin-right:20rpx;
+}
+
+
+/* 月度排行榜 */
+.flex{
+    display:flex;
+    justify-content: space-between;
+    align-content: top;
+}
+.flex1{
+    flex:1;
+}
+.flex15{flex:1.5;}
+.flex2{
+    flex:2;
+}
+.flex4{
+    flex:4;
+}
+.top_title{
+    position: absolute;
+    color:white;
+    font-weight: bold;
+    font-size:18px;
+    top:60rpx;
+    text-align: center;
+    width:100%;
+}
+.top_title1{
+    position: absolute;
+    color:white;
+    font-weight: bold;
+    font-size:14px;
+    top:120rpx;
+    text-align: center;
+    width:100%;
+}
+
+.awardContainer .awardList{
+    margin-top:-10rpx;
+    background: white;
+    padding:15rpx;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.awardList .section{color:#292929;font-size:14px;font-weight:bold;text-align: center;margin-bottom:50rpx;}
+.awardList .section1{
+    color:gray;
+    font-size:12px;
+    text-align: center;
+}
+.awardList .section1 .p{
+    margin-bottom:20rpx;
+}
+.awardList .section2{
+    font-size:16px;
+    font-weight: bold;
+    color:white;
+    margin:40rpx 0rpx;
+}
+.awardList .section2 .button{
+    padding:5px 20px;
+    border-radius: 5px;
+    background: #d12e23;
+}
+.mb20{
+    margin-bottom: 20rpx;
+}
+
+.c_red{color:red;}
+</style>
+
+<template>
+  <view class="container">
+    <view class="firstPage" wx:if="{{showPage}}">
+    <image src="../../images/bg.png" class="fullImages"></image>
+    <image src="../../images/swisse.png" class="swisse"></image>
+    <label class="ruleBtn" bindtap="goToPage" data-url="../rule/rule?show=rule">打卡规则</label>
+    <image src="../../images/bg1.png" class="bg1"></image>
+    <image src="../../images/bg2.png" class="bg2"></image>
+    <view class="number">{{memberNum}}位行者已经跑起来</view>
+    <form bindsubmit="submitInfo" report-submit='true' class="startForm">
+        <button form-type="submit" type="default" size="mini" class="startBtn" bindtap="showGuideMask">一起跑></button>
+    </form>
+    <!-- <image src="../../images/run_bt.png" class="runBtn" bindtap="showGuideMask"></image> -->
+</view>
+
+<!-- 弹窗 -->
+<view class="guideMask" class="{{markClass}}">
+    <view class="guideContainer">
+        <image src="../../images/close.png" class="close" bindtap="closeMask" data-mask="guide"></image>
+        <image src="../../images/top.png" class="topbg"></image>
+        <view class="textContainer">
+            <view class="rule">Hi,行者{{userInfo.nickName}}！请记住打卡三定律</view>
+            <view class="p">1、健康生活，<label class="c_red">每天行走1万步</label>，步数积累到月度总步数；</view>
+            <view class="p">2、<label  class="c_red">累积步数可领取Swisse礼品</label>（本期礼品Swisse产品/积分/优惠券），积分可兑换积分商城礼品，优惠券可购买Swisse产品；</view>
+            <view class="p">3、独跑，是一个人的健康；团跑是一群人的狂欢。And，<lable class="c_red">团跑奖励更丰厚</lable>。</view>
+            <view class="footButton">
+              <form bindsubmit="submitInfo" report-submit='true'>
+                <button form-type="submit" type="default" size="mini" class="left" bindtap="startRun">独自一人跑</button>
+                <button form-type="submit" type="default" size="mini" class="right" bindtap="teamRun">组团一起跑</button>
+              </form>
+            </view>
+        </view>
+    </view>
+    <view class="mask_opacity"></view>
+</view>
+<!-- 弹窗 -->
+
+<!-- 弹窗 -->
+<view class="awardMask" class = "{{awardMask}}">
+    <view class="awardContainer">
+        <image src="../../images/close.png" class="close" bindtap="closeMask" data-mask="award"></image>
+        <view class="p_rel">
+            <image src="../../images/title.png" class="topbg"></image>
+            <view class="top_title">21天打卡第{{chineseActTimes}}期</view>
+            <view class="top_title1">Swisse与你一起健康生活</view>
+        </view>
+        <view class="awardList">
+            <view class="section">月度跑团TOP5</view>
+            <view class="section1">
+                <view class="flex p" wx:for="{{rankList}}" wx:key="{{index}}">
+                    <view class="flex1">第{{index+1}}名</view>
+                    <view class="flex15">{{rankList[index].avgStep}}步</view>
+                    <view class="flex2">{{rankList[index].teamName}}</view>
+                    <view class="flex4">{{rankList[index].prizeName}}</view>
+                </view>
+            </view>
+            <!-- <view class="f_tc section2">
+                <text class="button">领取奖品</text>
+            </view> -->
+            <view class="f_tc f_f10 f_cgray mb20 mt40">该成绩以当期前21天步数进行统计。获奖团队请到“能量加油站”领取奖品</view>
+        </view>
+    </view>
+    <view class="mask_opacity"></view>
+</view>
+<!-- 弹窗 -->
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import List from '../components/list'
+  import Panel from '@/components/panel' // alias example
+  import Counter from 'counter' // alias example
+  import Group from '../components/group'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+  import common from '../libs/util'
+  import logstat from '../libs/logstat'
+
+  export default class Guide extends wepy.page {
+    config = {
+      navigationBarTitleText: 'guide'
+    }
+    components = {
+      panel: Panel,
+      counter1: Counter,
+      counter2: Counter,
+      list: List,
+      group: Group,
+      toast: Toast
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      images: '',
+      memberNum: '',
+      markClass: 'p_none',
+      awardMask: 'p_none',
+      rankList: [],
+      userInfo: {},
+      openId: '',
+      showPage: false,
+      chineseActTimes: ''
+    }
+
+    computed = {
+    }
+
+    methods = {
+      goToPage: function (event) {
+        wepy.navigateTo({
+          url: event.currentTarget.dataset.url,
+          fail: function() {
+            wepy.reLaunch({
+              url: event.currentTarget.dataset.url
+            })
+          }
+        })
+      }
+    }
+
+    events = {
+      'index-emit': (...args) => {
+        let $event = args[args.length - 1]
+        console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
+      }
+    }
+
+    async onLoad() {
+      logstat.logPv({
+        'platform': 7,
+        'pointCode': '7010100'
+      })
+      if (!this.$parent.globalData.openId) {
+        this.openId = await this.$parent.getOpenId()
+      }
+      if (!this.$parent.globalData.userInfo) {
+        this.userInfo = await this.$parent.getUserInfo()
+      }
+      this.checkJoinRun(this.openId)
+      this.getPersonNumber(this.openId)
+    }
+    /**
+   * 是否参加本期跑步
+   */
+    checkJoinRun(openId) {
+      common.showLoading('')
+      common.get('/swisse-miniapp/miniapp/swrun/person/is/join/' + openId).then(res => {
+        if (res.data.code === '100') {
+          if (res.data.data === '1') {
+            wepy.redirectTo({url: 'home'})
+          } else {
+            this.setData({
+              showPage: true
+            })
+            this.getRankList()
+          }
+        } else {
+          this.setData({
+            hasMember: false
+          })
+        }
+      })
+    }
+
+    /**
+   * 用户点击右上角分享
+   */
+    onShareAppMessage() {
+      return {
+        title: '21天打卡计划',
+        path: '/pages/guide/guide',
+        imageUrl: '/images/shareLogo.jpg',
+        success: function(res) {
+        },
+        fail: function(res) {
+        }
+      }
+    }
+
+    showGuideMask() {
+      logstat.logPv({
+        'platform': 7,
+        'pointCode': '7010101'
+      })
+      this.setData({
+        markClass: ''
+      })
+    }
+
+    startRun() {
+      logstat.logPv({
+        'platform': 7,
+        'pointCode': '7010102'
+      })
+      var openId = this.openId
+      common.post('/swisse-miniapp/miniapp/swrun/person/joinRun', {
+        openId: openId,
+        tsno: new Date().getTime()
+      }).then(res => {
+        if (res.data.code === '100') {
+          wepy.redirectTo({url: 'home'})
+        } else {
+          wepy.showToast({
+            title: res.data.desc,
+            icon: 'loading',
+            duration: 2000
+          })
+        }
+      })
+    }
+
+    closeMask(event) {
+      if (event.currentTarget.dataset.mask === 'guide') {
+        this.setData({markClass: 'p_none'})
+      } else {
+        this.setData({awardMask: 'p_none'})
+      }
+    }
+
+    /**
+     * 获取本期参加比赛人数
+     */
+    getPersonNumber() {
+      common.get('/swisse-miniapp/miniapp/swrun/person/total/join').then(res => {
+        if (res.data.code === '100') {
+          this.setData({memberNum: res.data.data})
+        } else {
+          wepy.showToast({
+            title: '查询人数失败',
+            icon: 'loading',
+            duration: 2000
+          })
+        }
+      })
+    }
+
+    /**
+     * 团跑
+     */
+    teamRun() {
+      logstat.logPv({
+        'platform': 7,
+        'pointCode': '7010103'
+      })
+      wepy.redirectTo({url: '../team/team'})
+    }
+
+    /**
+     * 上期获奖名单
+     */
+    getRankList() {
+      common.get('/swisse-miniapp/miniapp/swrun/team/query/month/ranking/list').then(res => {
+        if (res.data.code === '100') {
+          let actTimes = wepy.getStorageSync('actTimes') || ''
+          let chineseActTimes = common.Arabia_To_SimplifiedChinese(actTimes - 1)
+          this.setData({
+            awardMask: '',
+            rankList: res.data.data.monthAvgList,
+            chineseActTimes: chineseActTimes
+          })
+        } else {
+          this.setData({
+            awardMask: 'p_none'
+          })
+        }
+      })
+    }
+
+    /**
+     * 保存formId
+     */
+    submitInfo(e) {
+      console.log(e.detail.formId)
+      var openId = this.openId
+      common.post('/swisse-miniapp/miniapp/swrun/form/saveForm', {
+        openId: openId,
+        formId: e.detail.formId
+      }).then(res => {
+        if (res.data.code === '100') {
+          console.log('保存formId成功')
+        } else {
+          console.log('保存formId失败')
+        }
+      })
+    }
+  }
+</script>

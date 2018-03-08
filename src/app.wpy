@@ -1,0 +1,169 @@
+<style lang="less">
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+.flex-wrp{
+  display:flex;
+}
+.flex-item {
+  flex: 1;
+}
+.f-fl{
+  float: left;
+}
+.f-fr{
+  float: right;
+}
+.f-cb{
+  clear: both;
+}
+.f-pl5{
+  padding-left: 5px;
+}
+.f-pr5{
+  padding-right: 5px;
+}
+.f-mt10{
+  margin-top: 10px;
+}
+.f-mr10{
+  margin-right: 10px;
+}
+
+.mask_opacity{
+  position:fixed;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  background:black;
+  opacity:0.7;
+  z-index:10;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+import common from './libs/util.js'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/guide',
+      'pages/index',
+      'pages/home'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black'
+    }
+  }
+
+  globalData = {
+    userInfo: null,
+    openId: null,
+    ActTimes: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+  }
+
+  onLaunch() {
+    // this.testAsync()
+    this.getOpenId()
+    this.getUserInfo()
+    this.getActTimes()
+  }
+
+  sleep (s) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('promise resolved')
+      }, s * 1000)
+    })
+  }
+
+  async testAsync () {
+    const data = await this.sleep(3)
+    console.log(data)
+  }
+
+  getOpenId(isSession) {
+    // const that = this
+    if (this.globalData.openId && !isSession) {
+      return this.globalData.openId
+    }
+    if (this.globalData.sessionId && isSession) {
+      return this.globalData.sessionId
+    }
+    return new Promise((resolve, reject) => {
+      wepy.login({
+        success: res => {
+          common.get('/swisse-miniapp/miniapp/auth/getSession/' + res.code).then(res => {
+            if (res.data.code === '100') {
+              this.globalData.openId = res.data.data.openId
+              this.globalData.sessionId = res.data.data.sessionId
+              if (isSession) {
+                resolve(res.data.data.sessionId)
+              } else {
+                resolve(res.data.data.openId)
+              }
+            } else {
+              common.toastMessage('获取session失败', 'loading')
+            }
+          })
+        }
+      })
+    })
+  }
+
+  getUserInfo(cb) {
+    const that = this
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo
+    }
+    return new Promise((resolve, reject) => {
+      wepy.getUserInfo({
+        success (res) {
+          that.globalData.userInfo = res.userInfo
+          return res.userInfo
+        }
+      })
+    })
+  }
+
+  getActTimes(cb) {
+    if (this.globalData.actTimes) {
+      return this.globalData.actTimes
+    }
+    return new Promise((resolve, reject) => {
+      common.get('/swisse-miniapp/miniapp/swrun/query/cur/act/times').then(res => {
+        if (res.data.code === '100') {
+          this.globalData.actTimes = res.data.data
+          cb && cb(res.data.data)
+        }
+      })
+    })
+  }
+}
+</script>

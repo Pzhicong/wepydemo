@@ -1,0 +1,194 @@
+
+  <view class="pageContainer">
+    <!-- 主页 -->
+<view class="mainPage">
+    <view style="background:#f5f5f5;padding-top:10rpx;">
+        <view class="topLogo">
+            <view class="rank" bindtap="goToPage" data-url="../rank/rank">
+                <image src="../../images/rank.png"/>
+                <form bindsubmit="submitInfo" report-submit="true" class="rankForm">
+                    <button form-type="submit" type="default" size="mini" class="rankBtn">排行榜</button>
+                </form>
+            </view>
+            <view class="swisse">
+                <image src="../../images/swisse.png"/>
+            </view>
+            <view class="question" bindtap="goToPage" data-url="../rule/rule?show=question">
+                <image src="../../images/question.png"/>
+                <view>无步数?</view>
+            </view>
+        </view>
+        <view style="text-align:center;font-size:12px;"  wx:if="{{stepNum<10000}}">当日目标1万步，未完成，加油！</view>
+        <view style="text-align:center;font-size:12px;"  wx:if="{{stepNum>=10000}}">已超过1万步。太厉害了！</view>
+        <view class="wrapContainer" wx:if="{{hasUserInfo}}">
+            <view class="circle-box {{showCircleCanvas}}">
+                <canvas class="circleCanvas" style="width:140px; height:140px;" canvas-id="canvasCircle">
+                </canvas>
+                <canvas class="circleCanvas" style="width:140px; height:140px;" canvas-id="canvasArcCir">
+                </canvas>
+            </view>
+            <!-- <view class="wrap">
+                <view class="circle {{circleClass}}">
+                    <view class="percent leftCircle" style="transform:{{rotateNun}};-webkit-transform:{{rotateNun}};"></view>
+                    <view class="percent rightCircle {{rightClass}}"></view>
+                </view>
+                <view class="num"></view>
+            </view> -->
+            <view class="crileNumContainer">
+                <view class="ss">今日步数</view>
+                <view class="bs">{{stepNum}}</view>
+            </view>
+        </view>
+        <view><button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="authBtn"> 获取数据 </button></view>
+        <view style="text-align:center;color:red;font-size:14px;" bindtap="showDownloadPic" wx:if="{{hasUserInfo}}"><label style="border-bottom:1px solid red;">为自己打Call</label></view>
+        <view style="padding:20rpx 40rpx;font-size:14px;font-weight:bold;">
+            <label style="font-size:12px;letter-spacing:2rpx;">本期总步数：{{allStep}}</label>
+            <form bindsubmit="submitInfo" report-submit="true" class="recordForm">
+                <button form-type="submit" type="default" size="mini" data-url="../mine/mine" bindtap="goToPage" class="recordBtn p_fr myRecordBtn">记录与荣耀</button>
+            </form>
+            <!-- <label style="float:right;text-decoration:underline;" bindtap="goToPage" data-url="../mine/mine">我的记录</label> -->
+        </view>
+    </view>
+
+    <view class="calendar">
+        <view class="p1">您有{{fullNum}}天步数超过1万</view>
+        <view class="p2">
+            <view>日</view>
+            <view>一</view>
+            <view>二</view>
+            <view>三</view>
+            <view>四</view>
+            <view>五</view>
+            <view>六</view>
+        </view>
+
+        <swiper style="height:{{swiperHeight}};" current="{{hasExMonth?1:0}}">
+            <swiper-item wx:if="{{hasExMonth}}">
+                <!--上个月-->
+                <view class="p3">
+                    <view wx:for="{{exAllLenth}}" wx:key="{{index}}">
+                        <label class="calendarDay {{(index>=exMonthFirstDay && exMonthLen>=(index-exMonthFirstDay+1) && exMonthData[index-exMonthFirstDay] !==null)?(exMonthData[index-exMonthFirstDay]>=10000?'redDay':'grayDay'):''}}">
+                            {{index>=exMonthFirstDay?((index-exMonthFirstDay+1)>exMonthLen?'':(index-exMonthFirstDay+1)):''}}
+                        </label>
+                    </view>
+                </view>
+                <!--上个月-->
+            </swiper-item>
+
+            <swiper-item>
+                <!--当月-->
+                <view class="p3">
+                    <view wx:for="{{allLenth}}" wx:key="{{index}}">
+                        <label class="calendarDay {{(index>=monthFirstDay && monthLen>=(index-monthFirstDay+1) && thisMonthData[index-monthFirstDay] !==null)?(thisMonthData[index-monthFirstDay]>=10000?'redDay':'grayDay'):''}}">
+                            {{index>=monthFirstDay?((index-monthFirstDay+1)>monthLen?'':(index-monthFirstDay+1)):''}}
+                        </label>
+                    </view>
+                </view>
+                <!--当月-->
+            </swiper-item>
+        </swiper>
+    </view>
+
+    <view class="remindContainer">
+        <view class="left">
+            <!-- <switch bindchange="switchChange" checked="{{checked}}" size="small"/> -->
+            <image src="../../images/check.png" wx:if="{{checked}}" bindtap="switchChange" data-flag="0"/>
+            <image src="../../images/uncheck.png" wx:if="{{!checked}}" bindtap="switchChange" data-flag="1"/>
+            <label>提醒我坚持</label>
+        </view>
+        <view class="right">
+            <view class="finish"/>
+            <label>已完成</label>
+            <view class="unfinish"/>
+            <label>未完成</label>
+        </view>
+    </view>
+
+    <view class="foot">
+        <form bindsubmit="submitInfo" report-submit="true" class="bottomForm">
+            <button form-type="submit" type="default" size="mini" class="myTeam" bindtap="goToPage" data-url="../team/team">我的跑团</button>
+            <button form-type="submit" type="default" size="mini" class="welfare" bindtap="goToPage" data-url="../award/award">能量加油站</button>
+        </form>
+        <!-- <view class="myTeam" bindtap="goToPage" data-url="../team/team">
+            我的跑团
+        </view>
+        <view class="welfare" bindtap="goToPage" data-url="../award/award">
+            能量加油站
+        </view> -->
+    </view>
+    <!-- <view class="bottomLine"></view> -->
+</view>
+<!-- 主页 -->
+
+<!-- 弹窗遮罩层 -->
+<view class="downloadMask" style="display:{{maskAppear}};">
+    <view class="downloadContainer">
+        <view style="text-align:center;">
+            <image src="../../images/swisse.png" style="width:20vw;height:7.48vw;margin-top:10rpx;"/>
+            <view style="font-size:12px;">庆祝生活每一天</view>
+            <view style="font-size:12px;margin-bottom:20rpx;">Live Healthy , Be Happy</view>
+        </view>
+        <image src="../../images/close.png" class="close" bindtap="closeMask"/>
+        <image src="{{shareImage}}" class="bg"/>
+        <view class="secondPart">
+            <view class="left">
+                <image src="{{userInfo.avatarUrl}}"/>
+                <label>{{userInfo.nickName}}</label>
+            </view>
+            <view class="middle">
+                <!-- <view class="one">正在参加Swisse21天打卡计划</view> -->
+                <view class="three" style="margin-bottom:10rpx;">今天步数<label>{{stepNum}}</label>步</view>
+                <view class="three">您有
+                    <label>{{fullNum}}</label>天步数超过1万，总步数:</view>
+                <view class="four">
+                    <label>{{allStep}}</label>步</view>
+                <view class="two">累计全国排名第<label class="red">{{personRank}}</label>名<label wx:if="{{userInfo.city}}">，{{userInfo.city}}第<label class="red">{{cityTotalOrder}}</label>名</label></view>
+            </view>
+            <view class="right">
+                <image src="https://img2.mama100.com/site/mobile/img/swisse-wxapp/21Days/images/appCode.jpg"/>
+                <view style="color:gray;font-size:10px;">长按识别小程序码</view>
+                <view style="color:gray;font-size:10px;">一起来参加</view>
+            </view>
+        </view>
+        <view class="downloadBtn">
+                <image src="../../images/save.png" bindtap="saveCanvasToMobile"/>
+        </view>
+    </view>
+    <view class="mask_opacity"/>
+</view>
+<!-- 弹窗遮罩层 -->
+
+<!-- 打卡遮罩层 -->
+<view class="recordMask" style="display:none;">
+    <view class="recordContainer">
+        <image src="../../images/top.png" class="topbg"/>
+        <view class="textContainer">
+            <view class="f_tc mg30">
+                <text class="recordBtn">点击打卡</text>
+            </view>
+            <view class="tips">打卡时间：每天21:00~22:00</view>
+        </view>
+    </view>
+    <view class="mask_opacity"/>
+</view>
+<!-- 打卡遮罩层 -->
+
+<!-- 每日团队第一名 -->
+<view class="kickMask" wx:if="{{showFirstRankDialog}}">
+    <view class="kickMask__container joinTeam__container">
+        <image src="../../images/close.png" class="close" bindtap="closeFirstRankDialog"/>
+        <image src="../../images/tipTop.png" class="tipTop"/>
+        <view class="tip one">
+            <view class="teamName">{{rankOneTip[0]}}</view>
+            <view class="teamName">{{rankOneTip[1]}}</view>
+        </view>
+    </view>
+    <view class="mask_opacity"/>
+</view>
+<!-- 每日团队第一名 -->
+
+<!-- canvas -->
+ <canvas canvas-id="myCanvas" id="myCanvas" style="width:350px;height:440px;border:1px solid gray;margin-top:200px;display:{{canvasAppear}};"/> 
+<!-- canvas -->
+
+  </view>
