@@ -27,13 +27,6 @@
                 <canvas class="circleCanvas" style="width:140px; height:140px;" canvas-id="canvasArcCir">
                 </canvas>
             </view>
-            <!-- <view class="wrap">
-                <view class="circle {{circleClass}}">
-                    <view class="percent leftCircle" style="transform:{{rotateNun}};-webkit-transform:{{rotateNun}};"></view>
-                    <view class="percent rightCircle {{rightClass}}"></view>
-                </view>
-                <view class="num"></view>
-            </view> -->
             <view class="crileNumContainer">
                 <view class="ss">今日步数</view>
                 <view class="bs">{{stepNum}}</view>
@@ -46,7 +39,6 @@
             <form bindsubmit="submitInfo" report-submit="true" class="recordForm">
                 <button form-type="submit" type="default" size="mini" data-url="../mine/mine" bindtap="goToPage" class="recordBtn p_fr myRecordBtn">记录与荣耀</button>
             </form>
-            <!-- <label style="float:right;text-decoration:underline;" bindtap="goToPage" data-url="../mine/mine">我的记录</label> -->
         </view>
     </view>
 
@@ -91,7 +83,6 @@
 
     <view class="remindContainer">
         <view class="left">
-            <!-- <switch bindchange="switchChange" checked="{{checked}}" size="small"/> -->
             <image src="../../images/check.png" wx:if="{{checked}}" bindtap="switchChange" data-flag="0"/>
             <image src="../../images/uncheck.png" wx:if="{{!checked}}" bindtap="switchChange" data-flag="1"/>
             <label>提醒我坚持</label>
@@ -109,14 +100,7 @@
             <button form-type="submit" type="default" size="mini" class="myTeam" bindtap="goToPage" data-url="../team/team">我的跑团</button>
             <button form-type="submit" type="default" size="mini" class="welfare" bindtap="goToPage" data-url="../award/award">能量加油站</button>
         </form>
-        <!-- <view class="myTeam" bindtap="goToPage" data-url="../team/team">
-            我的跑团
-        </view>
-        <view class="welfare" bindtap="goToPage" data-url="../award/award">
-            能量加油站
-        </view> -->
     </view>
-    <!-- <view class="bottomLine"></view> -->
 </view>
 <!-- 主页 -->
 

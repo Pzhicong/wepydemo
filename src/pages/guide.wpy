@@ -293,12 +293,8 @@ height:190rpx;
         'platform': 7,
         'pointCode': '7010100'
       })
-      if (!this.$parent.globalData.openId) {
-        this.openId = await this.$parent.getOpenId()
-      }
-      if (!this.$parent.globalData.userInfo) {
-        this.userInfo = await this.$parent.getUserInfo()
-      }
+      this.openId = await this.$parent.getOpenId()
+      this.userInfo = await this.$parent.getUserInfo()
       this.checkJoinRun(this.openId)
       this.getPersonNumber(this.openId)
     }

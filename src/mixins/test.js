@@ -10,14 +10,15 @@ export default class testMixin extends wepy.mixin {
       console.log('mixin method tap')
     },
     goToPage(event) {
-      wepy.navigateTo({
-        url: event.currentTarget.dataset.url,
-        fail: function(){
-          wepy.reLaunch({
-            url: event.currentTarget.dataset.url
-          })
-        }
-      })
+      console.log(event.currentTarget.dataset.url)
+      // wepy.navigateTo({
+      //   url: event.currentTarget.dataset.url,
+      //   fail: function(){
+      //     wepy.reLaunch({
+      //       url: event.currentTarget.dataset.url
+      //     })
+      //   }
+      // })
     }
   }
 

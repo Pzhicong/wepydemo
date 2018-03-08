@@ -133,74 +133,6 @@ body {
     background-color: #f5f5f5;
     z-index: 1;
 }
-
-/* .wrap,
-.circle,
-.percent {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-}
-
-body {
-    background: gray;
-}
-
-.wrap {
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    left:50%;
-    background-color: white;
-}
-
-.circle {
-    box-sizing: border-box;
-    border: 20px solid white;
-    clip: rect(0, 200px, 200px, 100px);
-}
-
-.clip-auto {
-    clip: rect(auto, auto, auto, auto);
-}
-
-.percent {
-    box-sizing: border-box;
-    top: -20px;
-    left: -20px;
-}
-
-.leftCircle {
-    transition: transform ease;
-    border: 20px solid red;
-    clip: rect(0, 100px, 200px, 0);
-}
-
-.rightCircle {
-    border: 20px solid red;
-    clip: rect(0, 200px, 200px, 100px);
-}
-
-.wth0 {
-    width: 0;
-}
-
-.num {
-    position: absolute;
-    box-sizing: border-box;
-    width: 160px;
-    height: 160px;
-    line-height: 160px;
-    text-align: center;
-    font-size: 40px;
-    left: 20px;
-    top: 20px;
-    border-radius: 50%;
-    background-color: #f5f5f5;
-    z-index: 1;
-} */
-
 .foot{
   padding:0rpx 40rpx;
   position:fixed;
@@ -570,13 +502,6 @@ height:190rpx;
                 <canvas class="circleCanvas" style="width:140px; height:140px;" canvas-id="canvasArcCir">
                 </canvas>
             </view>
-            <!-- <view class="wrap">
-                <view class="circle {{circleClass}}">
-                    <view class="percent leftCircle" style="transform:{{rotateNun}};-webkit-transform:{{rotateNun}};"></view>
-                    <view class="percent rightCircle {{rightClass}}"></view>
-                </view>
-                <view class="num"></view>
-            </view> -->
             <view class="crileNumContainer">
                 <view class="ss">今日步数</view>
                 <view class="bs">{{stepNum}}</view>
@@ -589,7 +514,6 @@ height:190rpx;
             <form bindsubmit="submitInfo" report-submit='true' class="recordForm">
                 <button form-type="submit" type="default" size="mini" data-url="../mine/mine" bindtap="goToPage" class="recordBtn p_fr myRecordBtn">记录与荣耀</button>
             </form>
-            <!-- <label style="float:right;text-decoration:underline;" bindtap="goToPage" data-url="../mine/mine">我的记录</label> -->
         </view>
     </view>
 
@@ -634,7 +558,6 @@ height:190rpx;
 
     <view class="remindContainer">
         <view class="left">
-            <!-- <switch bindchange="switchChange" checked="{{checked}}" size="small"/> -->
             <image src="../../images/check.png"  wx:if="{{checked}}" bindtap="switchChange" data-flag="0"></image>
             <image src="../../images/uncheck.png" wx:if="{{!checked}}" bindtap="switchChange" data-flag="1"></image>
             <label>提醒我坚持</label>
@@ -652,14 +575,7 @@ height:190rpx;
             <button form-type="submit" type="default" size="mini" class="myTeam" bindtap="goToPage" data-url="../team/team">我的跑团</button>
             <button form-type="submit" type="default" size="mini" class="welfare" bindtap="goToPage" data-url="../award/award">能量加油站</button>
         </form>
-        <!-- <view class="myTeam" bindtap="goToPage" data-url="../team/team">
-            我的跑团
-        </view>
-        <view class="welfare" bindtap="goToPage" data-url="../award/award">
-            能量加油站
-        </view> -->
     </view>
-    <!-- <view class="bottomLine"></view> -->
 </view>
 <!-- 主页 -->
 
@@ -914,6 +830,7 @@ height:190rpx;
           this.showCircleCanvas = 'd_none'
           this.personRank = res.data.data.nationTotalOrder
           this.cityTotalOrder = res.data.data.cityTotalOrder
+          this.$apply()
         } else {
           common.showLoading('查询排名失败')
         }
@@ -1260,16 +1177,17 @@ height:190rpx;
         'platform': 7,
         'pointCode': '7020106'
       })
-      var openId = wepy.getStorageSync('openId') || ''
+      // var openId = wepy.getStorageSync('openId') || ''
       var msgFlag = event.currentTarget.dataset.flag
       // console.log('switch发生 change 事件，携带值为', e.detail.value)
       common.post('/swisse-miniapp/miniapp/swrun/form/update/msg/flag', {
-        openId: openId,
+        openId: this.openId,
         msgFlag: msgFlag
       }).then(res => {
         if (res.data.code === '100') {
           common.toastMessage('设置成功')
-          that.checked = msgFlag === 1
+          that.checked = msgFlag === '1'
+          this.$apply()
         } else {
           common.showLoading('设置失败')
         }
@@ -1368,9 +1286,9 @@ height:190rpx;
     // 保存formId
     submitInfo(e) {
       console.log(e.detail.formId)
-      var openId = wepy.getStorageSync('openId') || ''
+      // var openId = wepy.getStorageSync('openId') || ''
       common.post('/swisse-miniapp/miniapp/swrun/form/saveForm', {
-        openId: openId,
+        openId: this.openId,
         formId: e.detail.formId
       }).then(res => {
         if (res.data.code === '100') {
